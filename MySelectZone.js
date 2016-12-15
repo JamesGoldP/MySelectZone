@@ -15,7 +15,7 @@
      * @param   string   value
      */
  	this.loadOptions = function (object, text, value){
- 		this.createOptions(object, this.sourceSelect, text, value);
+ 		return this.createOptions(object, this.sourceSelect, text, value);
  	}	
 
  	/**
@@ -24,7 +24,7 @@
      *
      */
  	this.addItem = function(all){
- 		this.moveOptions(this.sourceSelect, this.targetSelect, all);
+ 		return this.moveOptions(this.sourceSelect, this.targetSelect, all);
  	}
 
  	/**
@@ -33,7 +33,7 @@
      *
      */
  	this.dropItem = function(all){
- 		this.moveOptions(this.targetSelect, this.sourceSelect, all);
+ 		return this.moveOptions(this.targetSelect, this.sourceSelect, all);
  	}
 
  	/**
@@ -48,6 +48,7 @@
 	        return false;
 	    }
         var selOptions = new Array();
+        var result = new Array();
 	    sourceSelectLength = sourceSelectLength-1;
 	    for( var i = sourceSelectLength;i >=0;i-- ){
 	    	//过滤不是全选而且没有选择的值
@@ -63,10 +64,13 @@
 	    	//如果不存在,则增加
 	    	if(!exist){
 	    		selOptions[selOptions.length] = source.options[i];
+	    		result[i] = source.options[i].value;
 	    		source.options[i] = null;
 	    	}
 	    }
-	    this.createOptions(selOptions, target, 'text', 'value'); 
+	    this.createOptions(selOptions, target, 'text', 'value');
+	    // console.dir(result);
+	    return result;
  	}
 
  	this.createOptions = function(object, position, text, value){
