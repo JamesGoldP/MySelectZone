@@ -73,7 +73,7 @@
  		//写法A
         for (var i = 0; i < object.length; i++) {
             var opt = document.createElement("OPTION");
-            opt.value = object[i][text];
+            opt.value = object[i][value];
             opt.text =  object[i][text];
             position.options.add(opt);
         }
