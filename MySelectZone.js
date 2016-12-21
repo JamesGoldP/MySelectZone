@@ -1,6 +1,6 @@
 /**
  *  
- *  selectZone 类
+ *  MySelectZone 类
  *
  */
  function MySelectZone(){
@@ -15,7 +15,7 @@
      * @param   string   value
      */
  	this.loadOptions = function (object, text, value){
- 		return this.createOptions(object, this.sourceSelect, text, value);
+ 		return this.createOptions(object, this.sourceSelect, text, value, true);
  	}	
 
  	/**
@@ -69,17 +69,27 @@
 	    		source.options[i] = null;
 	    	}
 	    }
-	    this.createOptions(selOptions, target, 'text', 'value');
+	    this.createOptions(selOptions, target, 'text', 'value',false);
 	    // console.dir(result);
 	    return result;
  	}
 
- 	this.createOptions = function(object, position, text, value){
- 		//写法A
+ 	/**
+     * 增加options
+     * @param   array  	 object
+     * @param boolean init 是否初清空对象option
+     */
+ 	this.createOptions = function(object, position, text, value, init){
+ 		//是否清空对象数据
+ 		if( init==true && position.length>0 ){	
+    		for (var i = position.length; i >=0; i--) {
+	            position.options[i] = null;
+	        }
+    	}
         for (var i = 0; i < object.length; i++) {
             var opt = document.createElement("OPTION");
-            opt.value = object[i][value];
             opt.text =  object[i][text];
+            opt.value = object[i][value];
             position.options.add(opt);
         }
 	    //写法B,每次会重置目标select的option
