@@ -56,9 +56,10 @@
 
 	    	//过滤已经存在的值
 	    	var exist = false;
-	    	for(var j;j<target.length;j++){
+	    	for(var j=0;j<target.length;j++){
 	    		if(source.options[i].value==target.options[j].value){
 	    			exist = true;
+	    			break;
 	    		}
 	    	}
 	    	//如果不存在,则增加
